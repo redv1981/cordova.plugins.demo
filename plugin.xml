@@ -20,6 +20,11 @@
 	<platform name="android">
 
 		<source-file src="src/android/Demo.java" target-dir="src/cordova/plugins/demo" />
+		<source-file src="src/android/DemoActivity.java" target-dir="src/cordova/plugins/demo" />
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:name="cordova.plugins.demo.DemoActivity" />
+		</config-file>
 
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="Demo">
