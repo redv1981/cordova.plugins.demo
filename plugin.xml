@@ -12,7 +12,7 @@
 	<repo>https://github.com/redv1981/cordova.plugins.demo.git</repo>
 	<issue>https://github.com/redv1981/cordova.plugins.demo/issues</issue>
 
-	<js-module src="demo.js" name="Demo">
+	<js-module src="www/demo.js" name="Demo">
 		<clobbers target="demo" />
 	</js-module>
 
