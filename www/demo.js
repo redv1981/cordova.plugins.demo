@@ -9,8 +9,8 @@ document.body.onclick = function() {
 		alert('Success: Demo.keyClick');
 
 		if (confirm('call: cordova.plugins.demo.DemoActivity')) {
-			exec(function() {
-				alert('Success: Demo.callActivity');
+			exec(function(msg) {
+				alert('Success: Demo.callActivity.\n' + msg);
 			}, failed, 'Demo', 'callActivity', [ 'cordova.plugins.demo.DemoActivity' ]);
 		}
 	}, failed, 'Demo', 'keyClick', []);
