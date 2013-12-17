@@ -13,7 +13,7 @@ public class DemoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
+		File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
 		Intent intent = new Intent().putExtra("result", path.toString());
 		setResult(Activity.RESULT_OK, intent);
 		finish();
