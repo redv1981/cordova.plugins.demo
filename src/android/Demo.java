@@ -25,7 +25,7 @@ public class Demo extends CordovaPlugin {
 	protected boolean callActivity(String className, CallbackContext callbackContext) {
 		Intent intent = new Intent().setClassName(cordova.getActivity(), className);
 		cordova.startActivityForResult(this, intent, 1);
-		callbackContext.success();
+		//callbackContext.success();
 
 		return true;
 	}
