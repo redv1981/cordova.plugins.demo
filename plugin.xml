@@ -23,7 +23,7 @@
 		<source-file src="src/android/DemoActivity.java" target-dir="src/cordova/plugins/demo" />
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<activity android:name="cordova.plugins.demo.DemoActivity" />
+			<activity android:name="cordova.plugins.demo.DemoActivity" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		</config-file>
 
 		<config-file target="res/xml/config.xml" parent="/*">
