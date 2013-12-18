@@ -2,8 +2,10 @@ package cordova.plugins.demo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +18,8 @@ public class DemoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		final SurfaceView view = new SurfaceView(this);
 
 		final Button btn = new Button(this);
 		btn.setText("按钮");
@@ -30,6 +34,7 @@ public class DemoActivity extends Activity {
 
 		final LinearLayout layout = new LinearLayout(this);
 		layout.setOrientation(LinearLayout.VERTICAL);
+		layout.addView(view);
 		layout.addView(btn);
 
 		setContentView(layout);
