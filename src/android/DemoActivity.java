@@ -16,7 +16,7 @@ public class DemoActivity extends Activity {
 
 		Button btn = new Button(this);
 		btn.setText("按钮");
-		addContentView(btn);
+		//addContentView(btn);
 		
 /*
 		File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
