@@ -49,12 +49,14 @@ public class DemoActivity extends Activity implements SurfaceHolder.Callback {
 
 		try {
 			recorder = new MediaRecorder();
-			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
 			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 			recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 			recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
+			recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 			recorder.setOutputFile(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "MediaRecorder_1.mp4").toString());
+			recorder.prepare();
+			recorder.start();
 		} catch (Exception e) {
 			Intent intent = new Intent().putExtra("result", e.toString());
 			setResult(Activity.RESULT_OK, intent);
@@ -66,6 +68,7 @@ public class DemoActivity extends Activity implements SurfaceHolder.Callback {
 	protected void onDestroy() {
 		super.onDestroy();
 
+		recorder.stop();
 		recorder.release();
 	}
 
