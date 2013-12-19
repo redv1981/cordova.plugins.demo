@@ -3,15 +3,12 @@ package cordova.plugins.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -22,6 +19,7 @@ public class DemoActivity extends Activity implements SurfaceHolder.Callback {
 
 	private Camera camera = null;
 	private boolean cameraPreviewing = false;
+	private MediaRecorder recorder = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class DemoActivity extends Activity implements SurfaceHolder.Callback {
 
 		final Button btn = new Button(this);
 		btn.setText("按钮");
-		btn.setOnClickListener(new OnClickListener() {
+		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
 				Intent intent = new Intent().putExtra("result", path.toString());
@@ -48,6 +46,27 @@ public class DemoActivity extends Activity implements SurfaceHolder.Callback {
 
 		final SurfaceHolder holder = view.getHolder();
 		holder.addCallback(this);
+
+		try {
+			recorder = new MediaRecorder();
+			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
+			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+			recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+			recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+			recorder.setOutputFile(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "MediaRecorder_1.mp4").toString());
+		} catch (Exception e) {
+			Intent intent = new Intent().putExtra("result", e.toString());
+			setResult(Activity.RESULT_OK, intent);
+			finish();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+
+		recorder.release();
 	}
 
 	@Override
